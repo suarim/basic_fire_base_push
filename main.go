@@ -41,7 +41,7 @@ var firebaseApp *firebase.App
 // Database initialization
 func initDB() {
 	var err error
-	dsn := "postgresql://neondb_owner:npg_n9kxwzWRBSY6@ep-patient-lake-a4ejqvcg-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+	dsn := "**********************************************************************************************"
 
 	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
