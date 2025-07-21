@@ -1,15 +1,25 @@
-importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging-compat.js');
+importScripts("https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/11.3.0/firebase-messaging.js");
 
-firebase.initializeApp({
-    apiKey: "*************************",
-    authDomain: "first-846ad.firebaseapp.com",
-    projectId: "first-846ad",
-    storageBucket: "first-846ad.firebasestorage.app",
-    messagingSenderId: "661662103746",
-    appId: "1:661662103746:web:f5fc8189f9703690c4a35b"
-});
+// Firebase Configuration (Same as in index.html)
+const firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
+};
 
-self.addEventListener('push', function(event) {
-    console.log('Push received');
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging();
+
+// Handle Background Notifications
+messaging.onBackgroundMessage((payload) => {
+    console.log('📩 Background notification:', payload);
+    self.registration.showNotification(payload.notification.title, {
+        body: payload.notification.body
+    });
 });
